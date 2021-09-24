@@ -6,14 +6,16 @@ public class MouseLook : MonoBehaviour
 {
 
     public float mouseSensitivity = 100f;
-
+    public GameObject player;
     public Transform playerBody;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerBody = player.GetComponent<Transform>();
     }
+
 
     // Update is called once per frame
     void Update()
