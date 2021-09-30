@@ -17,7 +17,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         playerBody = player.GetComponent<Transform>();
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
 
