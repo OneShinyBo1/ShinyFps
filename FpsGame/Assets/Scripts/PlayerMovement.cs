@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         // An if statement that says if the player isn't grounded, it will move downwards.
-        // It will move constantly towards
+        // But it won't move down at the speed of gravity, only slowly accelerating towards it.
         if(isGrounded && velocity.y <= 0)
         {
             velocity.y = -2f;
@@ -81,9 +81,10 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
-        // The formula for gravity, so that the player doesn't just float
+        // The formula for gravity, so that the player doesn't just float upwards forever
         velocity.y += gravity * Time.deltaTime;
 
+        // Makes the player actually go downwards, and not just stay at the y-axis it got after climbing an object
         controller.Move(velocity * Time.deltaTime);
     }
 }
