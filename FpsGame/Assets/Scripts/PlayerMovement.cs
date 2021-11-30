@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Checks if the Sphere is far enough from the ground for gravity to stop pulling the player down
+        // Checks if the Sphere is far enough from the ground for gravity to stop pulling the player down 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         // An if statement that says if the player isn't grounded, it will move downwards.
