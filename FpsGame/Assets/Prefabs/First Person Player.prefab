@@ -91,14 +91,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7553933427393294989}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae35d419a1b19eb4195ad44f0b45d10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  player: {fileID: 7553933427847067974}
-  playerBody: {fileID: 7553933427847067968, guid: 429d48dea509e8243b999a16f7f4c418, type: 3}
+  player: {fileID: 1596054821460582488}
+  sensitivity: 100
+  clampAngle: 85
 --- !u!1 &7553933427630905857
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +226,7 @@ CharacterController:
   m_GameObject: {fileID: 7553933427847067974}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 3.6
   m_Radius: 0.6
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7553933427847067974}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25db5e44a8f22254faaf9e6d28d84ea5, type: 3}
   m_Name: 
