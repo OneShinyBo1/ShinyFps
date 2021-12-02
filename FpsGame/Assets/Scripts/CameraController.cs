@@ -2,39 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
 
-    public PlayerManager player;
-    public float sensitivity = 100f;
-    public float clampAngle = 85f;
+    public float mouseSensitivity = 100f;
 
-    private float verticalRotation;
-    private float horizontalRotation;
+    public GameObject player;
 
-    private void Start()
+    public Transform playerBody;
+
+    float xRotation = 0f;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        verticalRotation = transform.localEulerAngles.x;
-        horizontalRotation = player.transform.eulerAngles.y;
+        playerBody = player.GetComponent<Transform>();
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update()
+
+    // Update is called once per frame
+    void Update()
     {
-        Look();
-        Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
-    }
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-    private void Look()
-    {
-        float _mouseVertical = -Input.GetAxis("Mouse Y");
-        float _mouseHorizontal = Input.GetAxis("Mouse X");
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        verticalRotation += _mouseVertical * sensitivity * Time.deltaTime;
-        horizontalRotation += _mouseHorizontal * sensitivity * Time.deltaTime;
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseX);
 
-        verticalRotation = Mathf.Clamp(verticalRotation, -clampAngle, clampAngle);
-
-        transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
-        player.transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
     }
 }
