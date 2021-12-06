@@ -27,30 +27,30 @@ namespace GameServer
 
             tcpListener = new TcpListener(IPAddress.Any, Port);
             tcpListener.Start();
-            tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
+            tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
 
             udpListener = new UdpClient(Port);
             udpListener.BeginReceive(UDPReceiveCallback, null);
 
-            Console.WriteLine($"Server started on {Port}.");
+            Console.WriteLine($"Server started on port {Port}.");
         }
 
-        private static void TCPConnectCallback(IAsyncResult _result) 
+        private static void TCPConnectCallback(IAsyncResult _result)
         {
             TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
-            tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
+            tcpListener.BeginAcceptTcpClient(TCPConnectCallback, null);
             Console.WriteLine($"Incoming connection from {_client.Client.RemoteEndPoint}...");
 
             for (int i = 1; i <= MaxPlayers; i++)
             {
-                if(clients[i].tcp.socket == null)
+                if (clients[i].tcp.socket == null)
                 {
                     clients[i].tcp.Connect(_client);
                     return;
                 }
             }
 
-            Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server Full");
+            Console.WriteLine($"{_client.Client.RemoteEndPoint} failed to connect: Server full!");
         }
 
         private static void UDPReceiveCallback(IAsyncResult _result)
@@ -114,13 +114,13 @@ namespace GameServer
             {
                 clients.Add(i, new Client(i));
             }
+
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
+                { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
             };
             Console.WriteLine("Initialized packets.");
-
         }
-
     }
 }

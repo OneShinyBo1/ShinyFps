@@ -16,7 +16,6 @@ public class ClientSend : MonoBehaviour
         Client.instance.udp.SendData(_packet);
     }
 
-
     #region Packets
     public static void WelcomeReceived()
     {
@@ -26,6 +25,21 @@ public class ClientSend : MonoBehaviour
             _packet.Write(UIManager.instance.usernameField.text);
 
             SendTCPData(_packet);
+        }
+    }
+
+    public static void PlayerMovement(bool[] _inputs)
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.playerMovement))
+        {
+            _packet.Write(_inputs.Length);
+            foreach (bool _input in _inputs)
+            {
+                _packet.Write(_input);
+            }
+            _packet.Write(GameManager.players[Client.instance.myId].transform.rotation);
+
+            SendUDPData(_packet);
         }
     }
     #endregion

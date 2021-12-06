@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.8654262, z: 1}
   m_Children: []
   m_Father: {fileID: 7553933427847067968}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7553933427393294991
 Camera:
@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae35d419a1b19eb4195ad44f0b45d10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  player: {fileID: 7553933427847067974}
-  playerBody: {fileID: 0}
+  player: {fileID: 1596054821460582488}
+  sensitivity: 100
+  clampAngle: 85
 --- !u!1 &7553933427630905857
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ Transform:
   m_LocalScale: {x: 1.2, y: 1.8, z: 1.2}
   m_Children: []
   m_Father: {fileID: 7553933427847067968}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7553933427630905853
 MeshFilter:
@@ -211,8 +211,8 @@ Transform:
   m_LocalPosition: {x: 20.5, y: 8.5, z: 25.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7553933427393294984}
   - {fileID: 7553933427630905858}
+  - {fileID: 7553933427393294984}
   - {fileID: 7553933428468302296}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -226,7 +226,7 @@ CharacterController:
   m_GameObject: {fileID: 7553933427847067974}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 3.6
   m_Radius: 0.6
@@ -247,17 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25db5e44a8f22254faaf9e6d28d84ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7553933427847067975}
-  speed: 16
-  gravity: -39.24
-  jumpHeight: 4
-  run: 26
-  groundCheck: {fileID: 7553933428468302296}
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  sprint: 304
 --- !u!114 &1596054821460582488
 MonoBehaviour:
   m_ObjectHideFlags: 0

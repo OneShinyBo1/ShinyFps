@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+
 namespace GameServer
 {
     class Program
@@ -8,14 +9,15 @@ namespace GameServer
 
         static void Main(string[] args)
         {
-            Console.Title = "GameServer";
+            Console.Title = "Game Server";
             isRunning = true;
 
             Thread mainThread = new Thread(new ThreadStart(MainThread));
             mainThread.Start();
 
-            Server.Start(50, 995);
-        } 
+            Server.Start(50, 26950);
+        }
+
         private static void MainThread()
         {
             Console.WriteLine($"Main thread started. Running at {Constants.TICKS_PER_SEC} ticks per second.");

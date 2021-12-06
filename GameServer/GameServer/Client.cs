@@ -9,7 +9,6 @@ namespace GameServer
 {
     class Client
     {
-
         public static int dataBufferSize = 4096;
 
         public int id;
@@ -32,6 +31,7 @@ namespace GameServer
             private NetworkStream stream;
             private Packet receivedData;
             private byte[] receiveBuffer;
+
             public TCP(int _id)
             {
                 id = _id;
@@ -50,15 +50,14 @@ namespace GameServer
 
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
 
-                ServerSend.Welcome(id, "Welcome to the server you absolute [BIG SHOT]!");
-
+                ServerSend.Welcome(id, "Welcome to the server!");
             }
 
             public void SendData(Packet _packet)
             {
                 try
                 {
-                    if(socket != null)
+                    if (socket != null)
                     {
                         stream.BeginWrite(_packet.ToArray(), 0, _packet.Length(), null, null);
                     }
@@ -73,15 +72,15 @@ namespace GameServer
             {
                 try
                 {
-                    int byteLength = stream.EndRead(_result);
-                    if(byteLength <= 0)
+                    int _byteLength = stream.EndRead(_result);
+                    if (_byteLength <= 0)
                     {
                         // TODO: disconnect
                         return;
                     }
 
-                    byte[] _data = new byte[byteLength];
-                    Array.Copy(receiveBuffer, _data, byteLength);
+                    byte[] _data = new byte[_byteLength];
+                    Array.Copy(receiveBuffer, _data, _byteLength);
 
                     receivedData.Reset(HandleData(_data));
                     stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
@@ -90,9 +89,9 @@ namespace GameServer
                 {
                     Console.WriteLine($"Error receiving TCP data: {_ex}");
                     // TODO: disconnect
-
                 }
             }
+
             private bool HandleData(byte[] _data)
             {
                 int _packetLength = 0;

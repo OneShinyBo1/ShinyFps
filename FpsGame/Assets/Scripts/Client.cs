@@ -4,13 +4,14 @@ using UnityEngine;
 using System.Net;
 using System.Net.Sockets;
 using System;
+
 public class Client : MonoBehaviour
 {
     public static Client instance;
     public static int dataBufferSize = 4096;
 
     public string ip = "127.0.0.1";
-    public int port = 995;
+    public int port = 26950;
     public int myId = 0;
     public TCP tcp;
     public UDP udp;
@@ -40,6 +41,7 @@ public class Client : MonoBehaviour
     public void ConnectToServer()
     {
         InitializeClientData();
+
         tcp.Connect();
     }
 
@@ -60,10 +62,10 @@ public class Client : MonoBehaviour
             };
 
             receiveBuffer = new byte[dataBufferSize];
-            socket.BeginConnect(instance.ip, instance.port, ConnectCallBack, socket);
+            socket.BeginConnect(instance.ip, instance.port, ConnectCallback, socket);
         }
 
-        private void ConnectCallBack(IAsyncResult _result)
+        private void ConnectCallback(IAsyncResult _result)
         {
             socket.EndConnect(_result);
 
@@ -71,12 +73,12 @@ public class Client : MonoBehaviour
             {
                 return;
             }
+
             stream = socket.GetStream();
 
             receivedData = new Packet();
 
             stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
-
         }
 
         public void SendData(Packet _packet)
@@ -98,22 +100,22 @@ public class Client : MonoBehaviour
         {
             try
             {
-                int byteLength = stream.EndRead(_result);
-                if (byteLength <= 0)
+                int _byteLength = stream.EndRead(_result);
+                if (_byteLength <= 0)
                 {
                     // TODO: disconnect
                     return;
                 }
 
-                byte[] _data = new byte[byteLength];
-                Array.Copy(receiveBuffer, _data, byteLength);
+                byte[] _data = new byte[_byteLength];
+                Array.Copy(receiveBuffer, _data, _byteLength);
 
                 receivedData.Reset(HandleData(_data));
                 stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
             }
             catch
             {
-                // TODO: Disconnect 
+                // TODO: disconnect
             }
         }
 
@@ -162,7 +164,6 @@ public class Client : MonoBehaviour
 
             return false;
         }
-
     }
 
     public class UDP
@@ -213,7 +214,7 @@ public class Client : MonoBehaviour
 
                 if (_data.Length < 4)
                 {
-                    // TODO: Disconnect
+                    // TODO: disconnect
                     return;
                 }
 
@@ -248,8 +249,10 @@ public class Client : MonoBehaviour
     {
         packetHandlers = new Dictionary<int, PacketHandler>()
         {
-            {(int)ServerPackets.welcome, ClientHandle.Welcome },
-            {(int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer }
+            { (int)ServerPackets.welcome, ClientHandle.Welcome },
+            { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
+            { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
+            { (int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
         };
         Debug.Log("Initialized packets.");
     }
