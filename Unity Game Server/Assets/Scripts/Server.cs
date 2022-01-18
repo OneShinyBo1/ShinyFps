@@ -119,6 +119,7 @@ using UnityEngine;
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
                 { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
+                { (int)ClientPackets.playerShoot, ServerHandle.PlayerShoot }
             };
             Console.WriteLine("Initialized packets.");
         }
