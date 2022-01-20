@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         {
             if (_hit.collider.CompareTag("Player"))
             {
-
+                _hit.collider.GetComponent<Player>().TakeDamage(50f);
             }
         }
     }
@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
             controller.enabled = false;
             transform.position = new Vector3(0f, 25f, 0f);
             ServerSend.PlayerPosition(this);
+            StartCoroutine(Respawn());
         }
 
         ServerSend.PlayerHealth(this);
