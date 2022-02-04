@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
         {
             ClientSend.PlayerShoot(camTransform.forward);
         }
+
     }
 
     private void FixedUpdate()
