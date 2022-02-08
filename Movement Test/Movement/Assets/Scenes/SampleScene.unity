@@ -1036,6 +1036,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  airMultiplier: 0.4
+  jumpForce: 15
+  jumpKey: 32
 --- !u!114 &1675137994
 MonoBehaviour:
   m_ObjectHideFlags: 0
