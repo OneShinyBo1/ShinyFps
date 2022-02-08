@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     public CharacterController controller;
     public Transform shootOrigin;
     public float gravity = -9.81f;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 6f;
     public float jumpSpeed = 5f;
     public float health;
     public float maxHealth = 100f;
+
+    Vector3 moveDirection;
 
     private bool[] inputs;
     private float yVelocity;
