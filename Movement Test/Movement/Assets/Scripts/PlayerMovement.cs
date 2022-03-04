@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    //Wallrunning
+    [SerializeField] WallRun wallRun;
+
     //Assingables
     public Transform playerCam;
     public Transform orientation;
@@ -180,7 +183,7 @@ public class PlayerMovement : MonoBehaviour {
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         //Perform the rotations
-        playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
+        playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, wallRun.tilt);
         orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
     }
 
