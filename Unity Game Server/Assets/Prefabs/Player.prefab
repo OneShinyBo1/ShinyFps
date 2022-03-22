@@ -81,8 +81,8 @@ MonoBehaviour:
   controller: {fileID: 770414295768871138}
   shootOrigin: {fileID: 4365141105632289872}
   gravity: -19.62
-  moveSpeed: 5
-  jumpSpeed: 9
+  moveSpeed: 15
+  jumpSpeed: 12
   health: 0
   maxHealth: 100
 --- !u!143 &770414295768871138
@@ -163,7 +163,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ee42639489e906444bdeb0a450294e7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

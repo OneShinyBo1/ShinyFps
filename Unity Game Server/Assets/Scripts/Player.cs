@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 25f))
+        if (Physics.Raycast(shootOrigin.position, _viewDirection, out RaycastHit _hit, 200f))
         {
             if (_hit.collider.CompareTag("Player"))
             {
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
         {
             health = 0f;
             controller.enabled = false;
-            transform.position = new Vector3(0f, 25f, 0f);
+            transform.position = new Vector3(Random.Range(0f, 100f), 25f, Random.Range(0f, 100f));
             ServerSend.PlayerPosition(this);
             StartCoroutine(Respawn());
         }
