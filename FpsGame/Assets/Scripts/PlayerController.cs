@@ -6,13 +6,40 @@ public class PlayerController : MonoBehaviour
 {
     public Transform camTransform;
 
+    public float fireRate = 0.5f;
+
+    public bool canFire = true;
+
+    public ParticleSystem muzzleFlash;
+
+    public AudioSource vineBoom;
+
+
+    private void Start()
+    {
+        vineBoom = GetComponent<AudioSource>();
+    }
+
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
+        if (Input.GetKeyDown(KeyCode.Mouse0)&&canFire==true)
+        { 
+            muzzleFlash.Play();
+            vineBoom.Play();
+            Debug.Log(canFire);
+            canFire = false;
             ClientSend.PlayerShoot(camTransform.forward);
+            StartCoroutine("Reset");
         }
 
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
+        Debug.Log("Wait");
     }
 
     private void FixedUpdate()
