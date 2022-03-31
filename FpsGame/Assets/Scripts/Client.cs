@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Net;
 using System.Net.Sockets;
 using System;
+using UnityEngine.UI;
 
 public class Client : MonoBehaviour
 {
@@ -16,9 +17,12 @@ public class Client : MonoBehaviour
     public TCP tcp;
     public UDP udp;
 
+    public InputField IpInput;
     private bool isConnected = false;
     private delegate void PacketHandler(Packet _packet);
     private static Dictionary<int, PacketHandler> packetHandlers;
+
+
 
     private void Awake()
     {

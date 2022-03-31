@@ -12,10 +12,6 @@ public class PlayerManager : MonoBehaviour
     public MeshRenderer gunModel;
     public MeshRenderer vizorModel;
 
-    // Interpolation
-    [SerializeField] private Transform startTransform;
-    [SerializeField] private Transform endTransform;
-    [SerializeField]
 
     private Vector3 fromPos = Vector3.zero;
     private Vector3 toPos = Vector3.zero;
