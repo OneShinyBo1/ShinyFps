@@ -369,6 +369,9 @@ MonoBehaviour:
   model: {fileID: 7553933427630905852}
   gunModel: {fileID: 7849524731575330818}
   vizorModel: {fileID: 3555874078526969055}
+  startTransform: {fileID: 0}
+  endTransform: {fileID: 0}
+  fromPos: {x: 0, y: 0, z: 0}
 --- !u!1 &7553933428468302303
 GameObject:
   m_ObjectHideFlags: 0
