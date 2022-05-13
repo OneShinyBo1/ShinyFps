@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
         { 
             muzzleFlash.Play();
             vineBoom.Play();
-            Debug.Log(canFire);
             canFire = false;
             ClientSend.PlayerShoot(camTransform.forward);
             StartCoroutine("Reset");
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(fireRate);
         canFire = true;
-        Debug.Log("Wait");
     }
 
     private void FixedUpdate()

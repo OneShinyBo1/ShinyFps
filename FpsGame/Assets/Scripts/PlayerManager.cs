@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     public float Smoothing = 33.3f;
     
 
+    // Player getting initialized
     public void Initialize(int _id, string _username)
     {
         id = _id;
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         health = maxHealth;
     }
 
+    // Setting positions of what is going to be used for interpolation
    public void SetPosition(Vector3 position)
    {
         fromPos = toPos;
@@ -36,6 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        // Interpolation so that the player moves more smooth
         this.transform.position = Vector3.Lerp(fromPos, toPos, (Time.time - lastTime) / (1.0f / Smoothing));
     }
 
